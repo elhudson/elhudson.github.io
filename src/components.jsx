@@ -7,7 +7,7 @@ export function Bio() {
             <h1 className={css`
                 margin:unset;
                 border-bottom:${theme.border};
-                font-family:'mono';
+                font-family:'mono'; 
             `}>
                 El Hudson
             </h1>
