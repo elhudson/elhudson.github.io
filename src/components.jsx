@@ -4,14 +4,12 @@ import Uri from "jsuri"
 
 export function Bio() {
     return (
-        <div>
-            <h1 className={css`
-                margin:unset;
+        <div className={css`
+            h1 {
                 border-bottom:${theme.border};
-                font-family:'mono'; 
-            `}>
-                El Hudson
-            </h1>
+            }
+        `}>
+            <Title />
             <div className={css`
                 padding:0px 10px;
             `}>
@@ -24,9 +22,17 @@ export function Bio() {
     )
 }
 
+export function Title() {
+    return (<h1 className={css`
+                ${theme.linkable}
+            `} onClick={()=>window.location.assign('/')}>
+        El Hudson
+    </h1>)
+}
+
 export function Links() {
     function redir(next) {
-        var current=new Uri(window.location.href)
+        var current = new Uri(window.location.href)
         current.setAnchor(next)
         window.location.assign(current.toString())
         window.location.reload()
@@ -38,16 +44,15 @@ export function Links() {
             button {
                 border:none;
                 width:100%;
-                border-top:${theme.border};
                 &:not(button:last-child) {
                     border-right:${theme.border}
                 }
             }
       `}>
-            <button onClick={()=>{redir('about')}}>About</button>
-            <button onClick={()=>{redir('projects')}}>Projects</button>
-            {/* <button onClick={()=> {window.location.assign('blog')}}>Blog</button> */}
-            <button onClick={()=>{redir('contact')}}>Contact</button>
+            <button onClick={() => { redir('about') }}>About</button>
+            <button onClick={() => { redir('projects') }}>Projects</button>
+            <button onClick={() => { redir('contact') }}>Contact</button>
+            <button onClick={() => { redir('resume') }}>Resume</button>
         </div>
     )
 }

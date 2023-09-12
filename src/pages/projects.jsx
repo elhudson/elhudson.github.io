@@ -30,6 +30,7 @@ function Project({data}) {
             `}>
                 <h4 className={css`
                     margin:unset;
+                    font-family:'mono';
                     border-bottom:${theme.border};
                     width:100%;
                     padding:5px;

@@ -14,16 +14,19 @@ export default function Contact() {
                     margin-bottom:5px;
                     &:not(p) {
                         margin-right:10px;
+                        font-family:'mono';
                     }
                 }
             `}>
                 <ContactItem data={{
                     method:'email',
-                    address:'el.hudson@hotmail.com'
+                    address:'el.hudson@hotmail.com',
+                    link:'mailto:el.hudson@hotmail.com'
                 }} />
                 <ContactItem data={{
                     method:'telephone',
-                    address:'781.458.9514'
+                    address:'781.458.9514',
+                    link:'tel:781.458.9514'
                 }} />
             </div>
         </Section>
@@ -34,7 +37,7 @@ function ContactItem({data}) {
     return(
         <>
             <h4>{data.method}</h4>
-            <p>{data.address}</p>
+            <a href={data.link}>{data.address}</a>
         </>
     )
 }
