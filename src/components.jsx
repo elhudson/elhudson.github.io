@@ -37,11 +37,11 @@ export function Links() {
                 }
             }
       `}>
-            <button onClick={() => { window.location.assign('about') }}>About</button>
-            <button onClick={() => { window.location.assign('projects') }}>Projects</button>
+            <button onClick={() => { window.location.replace('about') }}>About</button>
+            <button onClick={() => { window.location.replace('projects') }}>Projects</button>
             {/* <button onClick={()=> {window.location.assign('blog')}}>Blog</button> */}
-            <button onClick={() => { window.location.assign('src/assets/library_resume.pdf') }}>Resume</button>
-            <button onClick={() => { window.location.assign('contact') }}>Contact</button>
+            <button onClick={() => { window.location.replace('src/assets/library_resume.pdf') }}>Resume</button>
+            <button onClick={() => { window.location.replace('contact') }}>Contact</button>
         </div>
     )
 }
