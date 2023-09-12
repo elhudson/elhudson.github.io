@@ -1,5 +1,6 @@
 import { css } from "@emotion/css"
 import theme from "./theme"
+import Uri from "jsuri"
 
 export function Bio() {
     return (
@@ -24,6 +25,12 @@ export function Bio() {
 }
 
 export function Links() {
+    function redir(next) {
+        var current=new Uri(window.location.href)
+        current.setAnchor(next)
+        window.location.assign(current.toString())
+        window.location.reload()
+    }
     return (
         <div className={css`
             display:flex;
@@ -37,11 +44,10 @@ export function Links() {
                 }
             }
       `}>
-            <button onClick={() => { window.location.replace('about') }}>About</button>
-            <button onClick={() => { window.location.replace('projects') }}>Projects</button>
+            <button onClick={()=>{redir('about')}}>About</button>
+            <button onClick={()=>{redir('projects')}}>Projects</button>
             {/* <button onClick={()=> {window.location.assign('blog')}}>Blog</button> */}
-            <button onClick={() => { window.location.replace('src/assets/library_resume.pdf') }}>Resume</button>
-            <button onClick={() => { window.location.replace('contact') }}>Contact</button>
+            <button onClick={()=>{redir('contact')}}>Contact</button>
         </div>
     )
 }

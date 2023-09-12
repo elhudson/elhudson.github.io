@@ -5,9 +5,11 @@ import Projects from './pages/projects'
 import Blog from './pages/blog'
 import Contact from './pages/contact'
 import theme from './theme'
+import Uri from 'jsuri'
 
 function App() {
-  const where=window.location.pathname
+  const where=new Uri(window.location.href).anchor()
+  console.log(where)
   return(
     <div className={css`
       button {
@@ -16,11 +18,11 @@ function App() {
         font-family:'mono';
       }
     `}>
-      {where=='/' && <Homepage />}
-      {where=='/about' && <About />}
-      {where=='/projects' && <Projects />}
-      {where=='/blog' && <Blog />}
-      {where=='/contact' && <Contact />}
+      {where=="" && <Homepage />}
+      {where=='about' && <About />}
+      {where=='projects' && <Projects />}
+      {where=='blog' && <Blog />}
+      {where=='contact' && <Contact />}
     </div>
   )
 }
