@@ -12,6 +12,12 @@ export default function Projects() {
                 blurb:`An interactive character sheet for the Habitually Underbuilt Roleplay Integrated System, 
                 or HUBRIS, created by Nadav Elata with contributions and documentation (mostly) by El Hudson.`
             }}/>
+            <Project data={{
+                title:'As-Yet-Unnamed Fanfiction Statistical Model',
+                code:'https://github.com/elhudson/fanficStats',
+                blurb:`A project exploring what kinds of published fiction generate more/less/what kinds of fanfiction, among 
+                other things.`
+            }}/>
         </Section>
     )
 }
@@ -20,6 +26,7 @@ function Project({data}) {
     return(
         <div className={css`
             border:${theme.border};
+            margin-bottom:5px;
             p {
                     margin:5px;
                 }

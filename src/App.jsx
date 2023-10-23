@@ -9,7 +9,7 @@ import theme from './theme'
 import Uri from 'jsuri'
 
 function App() {
-  const where = new Uri(window.location.href).anchor()
+  const where = window.location.pathname
   return (
     <div className={css`
       a {
@@ -32,15 +32,15 @@ function App() {
         }
       }
     `}>
-      {where == "" ?
+      {where == "/" ?
         <Homepage /> :
         <>
           <Header />
-          {where == 'about' && <About />}
-          {where == 'projects' && <Projects />}
-          {where == 'blog' && <Blog />}
-          {where == 'contact' && <Contact />}
-          {where == 'resume' && <Resume />}
+          {where == '/about' && <About />}
+          {where == '/projects' && <Projects />}
+          {where == '/blog' && <Blog />}
+          {where == '/contact' && <Contact />}
+          {where == '/resume' && <Resume />}
         </>}
     </div>
   )

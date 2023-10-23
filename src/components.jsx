@@ -32,10 +32,7 @@ export function Title() {
 
 export function Links() {
     function redir(next) {
-        var current = new Uri(window.location.href)
-        current.setAnchor(next)
-        window.location.assign(current.toString())
-        window.location.reload()
+        window.location.pathname=next
     }
     return (
         <div className={css`
@@ -53,6 +50,7 @@ export function Links() {
             <button onClick={() => { redir('projects') }}>Projects</button>
             <button onClick={() => { redir('contact') }}>Contact</button>
             <button onClick={() => { redir('resume') }}>Resume</button>
+            <button onClick={() => { redir('blog') }}>Blog</button>
         </div>
     )
 }
