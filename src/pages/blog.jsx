@@ -4,6 +4,7 @@ import Markdown from "react-markdown"
 import remarkFrontmatter from "remark-frontmatter"
 import { remark } from "remark"
 import { DateTime } from "luxon"
+import { useAsync } from "react-async-hook"
 
 const yaml = await import('js-yaml')
 const parser = remark().use(remarkFrontmatter)
@@ -12,28 +13,32 @@ import { css } from '@emotion/css'
 
 import Uri from "jsuri"
 
-var posts_markdown = []
-
-Object.entries(import.meta.glob('../blog/*.md', { as: 'raw' })).forEach(async (entry) => {
-    var data = await entry[1]()
-    var p = parser.parse(data)
-    var meta = yaml.load(p.children.filter(a => a.type == 'yaml')[0].value)
-    var content = p.children.filter(a => a.type != 'yaml').map(j => parser.stringify(j)).join('')
-    var date=new DateTime(meta.date)
-    posts_markdown.push({
-        metadata: {
-            ...meta,
-            tags: meta.tags.split(','),
-            date: date.toUnixInteger()
-        },
-        content: content
+async function get_posts() {
+    var posts_markdown=[]
+    Object.entries(import.meta.glob('../blog/*.md', { as: 'raw' })).forEach(async (entry) => {
+        var data = await entry[1]()
+        var p = parser.parse(data)
+        var meta = yaml.load(p.children.filter(a => a.type == 'yaml')[0].value)
+        var content = p.children.filter(a => a.type != 'yaml').map(j => parser.stringify(j)).join('')
+        var date=new DateTime(meta.date)
+        posts_markdown.push({
+            metadata: {
+                ...meta,
+                tags: meta.tags.split(','),
+                date: date.toUnixInteger()
+            },
+            content: content
+        })
     })
-})
+    return posts_markdown
+}
+
+const posts=await get_posts()
 
 export default function Blog() {
     return (
         <Section title='Blog'>
-            {posts_markdown.map(post => <PostSnippet post={post} />)}
+            {posts.map(post => <PostSnippet post={post} />)}
         </Section>
     )
 }
