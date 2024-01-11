@@ -1,0 +1,98 @@
+---
+import { getCollection } from "astro:content";
+import FormattedDate from "./FormattedDate.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => a.data.pub.valueOf() - b.data.pub.valueOf()
+);
+---
+
+<!doctype html>
+<html lang="en">
+  <style lang="scss">
+    main {
+      width: 960px;
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      position: relative;
+      div.meta {
+        position: absolute;
+        right: 0;
+        top: 0;
+        max-width: 200px;
+      }
+    }
+    ul li {
+      width: 100%;
+      a,
+      div.meta {
+        width: calc(100% - 200px);
+      }
+      div.meta {
+        text-align: right;
+
+      }
+    }
+    ul li * {
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+    ul li img {
+      margin-bottom: 0.5rem;
+      border-radius: 12px;
+    }
+    ul li a {
+      display: block;
+    }
+    .title {
+      margin: 0;
+      color: var(--accent-dark);
+      line-height: 1;
+    }
+    .date {
+      margin: 0;
+      color: var(--accent-dark);
+    }
+    ul li a:hover h4,
+    ul li a:hover .date {
+      font-style: italic;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    ul a:hover img {
+      box-shadow: var(--box-shadow);
+    }
+  </style>
+  <ul>
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}/`}>
+            <h4 class="title">{post.data.title}</h4>
+          </a>
+          <div class="meta">
+            <FormattedDate date={post.data.pub} />
+            {post.data.tags && (
+              <div>
+                <i>filed under: </i>
+                {post.data.tags.map((tag) => (
+                  <span>{tag}</span>
+                ))}{" "}
+              </div>
+            )}
+          </div>
+          <div class="description">{post.data.description}</div>
+        </li>
+      ))
+    }
+  </ul>
+
+</html>

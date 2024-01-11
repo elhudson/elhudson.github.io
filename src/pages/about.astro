@@ -1,0 +1,70 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Container from "../components/Container.astro";
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en">
+  <style lang="scss">
+    article {
+      display: flex;
+      >div {
+        padding: 10px;
+        padding-top: 0px;
+      }
+      .pfp {
+        flex-shrink: 0;
+        img {
+          height: 70vh;
+          display: block;
+          border-radius: 12px;
+          box-shadow: var(--box-shadow);
+        }
+      }
+      .title {
+        margin-bottom: 1em;
+        padding: 1em 0;
+        text-align: center;
+        line-height: 1;
+      }
+      .title h1 {
+        margin: 0 0 0.5em 0;
+      }
+      .date {
+        margin-bottom: 0.5em;
+        color: rgb(var(--gray));
+      }
+      .last-updated-on {
+        font-style: italic;
+      }
+    }
+  </style>
+  <Container>
+    <article>
+      <div class="pfp">
+        <img src="/profile.jpg" />
+      </div>
+      <div class="prose">
+        <p>
+          Hi! My name's El. I'm a writer, tutor, and computer programmer, with
+          expertise in web development and computational data analysis. In
+          college I studied ancient history for two years before discovering
+          that I loved to code, and I'm really interested in applying
+          quantitative methods to social, historical and literary questions.
+        </p>
+
+        <p>
+          I was born in Texas, but I moved to Boston to attend college at
+          Wellesley in 2018. I graduated with a degree in Classics in 2023,
+          after four years plus a gap year working in educational policy at the
+          Archdiocese of San Antonio. These days I live in Greater Boston and
+          work in a local school system. When I'm not doing that, I like to
+          read, write, watch movies and TV, and play tabletop games with my
+          friends.
+        </p>
+      </div>
+    </article>
+  </Container>
+</html>
