@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import Container from "../../components/Container.astro";
+const posts = await getCollection("projects");
+---
+
+<Container>
+  {
+    posts.map((post) => (
+      <div>
+        <a href={`/projects/${post.slug}/`}>{post.data.title}</a>
+      </div>
+    ))
+  }
+</Container>
