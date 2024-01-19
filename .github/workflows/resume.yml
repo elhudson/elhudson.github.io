@@ -18,4 +18,4 @@ jobs:
       - name: Download Linkedin scraper
         run: pip3 install git+https://github.com/tomquirk/linkedin-api.git
       - name: Fetch newest version of LinkedIn profile # run main.py
-        run: python3 scripts/linkedin_sync.py
+        run: python3 ./scripts/linkedin_sync.py
