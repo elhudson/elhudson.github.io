@@ -7,5 +7,5 @@ api = Linkedin(
 
 profile = api.get_profile("elthudson")
 
-with open("../public/resume.json", "w+") as file:
+with open("./public/resume.json", "w+") as file:
     json.dump(profile, file)
