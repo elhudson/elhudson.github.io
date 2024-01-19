@@ -11,6 +11,10 @@
 	--text: #282828;
 }
 
+iconify-icon {
+	padding:0px 5px;
+}
+
 body {
 	font-family: 'IBM Plex Serif', serif;
 	margin: 0;
@@ -21,7 +25,7 @@ body {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--text));
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 1.7;
 }
 
@@ -47,19 +51,19 @@ h1 {
 }
 
 h2 {
-	font-size: 2.441em;
+	font-size: 2.0em;
 }
 
 h3 {
-	font-size: 1.953em;
+	font-size: 1.5em;
 }
 
 h4 {
-	font-size: 1.563em;
+	font-size: 1.25em;
 }
 
 h5 {
-	font-size: 1.25em;
+	font-size: 1.15em;
 }
 
 strong,

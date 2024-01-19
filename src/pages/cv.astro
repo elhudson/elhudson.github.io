@@ -1,0 +1,178 @@
+---
+import Container from "../components/Container.astro";
+import resume from "../../public/resume.json";
+import Working from "../components/Statuses/Working.svelte"
+
+---
+
+<Container>
+  <script>
+    document.querySelectorAll("details").forEach((item) => {
+      item.setAttribute("open", "");
+    });
+  </script>
+  <style lang="scss">
+    #education summary::marker {
+      content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWdyYWR1YXRpb24tY2FwIj48cGF0aCBkPSJNMjIgMTB2Nk0yIDEwbDEwLTUgMTAgNS0xMCA1eiIvPjxwYXRoIGQ9Ik02IDEydjVjMyAzIDkgMyAxMiAwdi01Ii8+PC9zdmc+");
+    }
+    #work summary::marker {
+      content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWJyaWVmY2FzZSI+PHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjE0IiB4PSIyIiB5PSI3IiByeD0iMiIgcnk9IjIiLz48cGF0aCBkPSJNMTYgMjFWNWEyIDIgMCAwIDAtMi0yaC00YTIgMiAwIDAgMC0yIDJ2MTYiLz48L3N2Zz4=");
+    }
+    #publications summary::marker {
+      content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWJvb2stb3Blbi10ZXh0Ij48cGF0aCBkPSJNMiAzaDZhNCA0IDAgMCAxIDQgNHYxNGEzIDMgMCAwIDAtMy0zSDJ6Ii8+PHBhdGggZD0iTTIyIDNoLTZhNCA0IDAgMCAwLTQgNHYxNGEzIDMgMCAwIDEgMy0zaDd6Ii8+PHBhdGggZD0iTTYgOGgyIi8+PHBhdGggZD0iTTYgMTJoMiIvPjxwYXRoIGQ9Ik0xNiA4aDIiLz48cGF0aCBkPSJNMTYgMTJoMiIvPjwvc3ZnPg==");
+    }
+    #awards summary::marker {
+      content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXRyb3BoeSI+PHBhdGggZD0iTTYgOUg0LjVhMi41IDIuNSAwIDAgMSAwLTVINiIvPjxwYXRoIGQ9Ik0xOCA5aDEuNWEyLjUgMi41IDAgMCAwIDAtNUgxOCIvPjxwYXRoIGQ9Ik00IDIyaDE2Ii8+PHBhdGggZD0iTTEwIDE0LjY2VjE3YzAgLjU1LS40Ny45OC0uOTcgMS4yMUM3Ljg1IDE4Ljc1IDcgMjAuMjQgNyAyMiIvPjxwYXRoIGQ9Ik0xNCAxNC42NlYxN2MwIC41NS40Ny45OC45NyAxLjIxQzE2LjE1IDE4Ljc1IDE3IDIwLjI0IDE3IDIyIi8+PHBhdGggZD0iTTE4IDJINnY3YTYgNiAwIDAgMCAxMiAwVjJaIi8+PC9zdmc+");
+    }
+    #languages summary::marker {
+      content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWdsb2JlLTIiPjxwYXRoIGQ9Ik0yMS41NCAxNUgxN2EyIDIgMCAwIDAtMiAydjQuNTQiLz48cGF0aCBkPSJNNyAzLjM0VjVhMyAzIDAgMCAwIDMgM3YwYTIgMiAwIDAgMSAyIDJ2MGMwIDEuMS45IDIgMiAydjBhMiAyIDAgMCAwIDItMnYwYzAtMS4xLjktMiAyLTJoMy4xNyIvPjxwYXRoIGQ9Ik0xMSAyMS45NVYxOGEyIDIgMCAwIDAtMi0ydjBhMiAyIDAgMCAxLTItMnYtMWEyIDIgMCAwIDAtMi0ySDIuMDUiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjwvc3ZnPg==");
+    }
+    #projects summary::marker {
+      content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpZ2h0YnVsYiI+PHBhdGggZD0iTTE1IDE0Yy4yLTEgLjctMS43IDEuNS0yLjUgMS0uOSAxLjUtMi4yIDEuNS0zLjVBNiA2IDAgMCAwIDYgOGMwIDEgLjIgMi4yIDEuNSAzLjUuNy43IDEuMyAxLjUgMS41IDIuNSIvPjxwYXRoIGQ9Ik05IDE4aDYiLz48cGF0aCBkPSJNMTAgMjJoNCIvPjwvc3ZnPg==");
+    }
+    summary {
+      h2 {
+        display: inline;
+      }
+    }
+    details[open] > *:last-child {
+      padding-left: 20px;
+      margin-left: 10px;
+      border-left: 3px solid #665c54;
+    }
+    details > ul > li {
+      position: relative;
+      margin: 20px 0px;
+      list-style-type: none;
+      width: 100%;
+      h3 {
+        max-width: 70%;
+      }
+      h4,
+      div.meta {
+        color: #665c54;
+        position: absolute;
+        right: 0;
+        transform-origin: top right;
+        transform: scale(80%);
+        top: 7px;
+        text-align: right;
+        max-width: 40%;
+        white-space: nowrap;
+        overflow: scroll;
+        text-overflow: ellipsis;
+      }
+      div.meta {
+        top: 30px;
+      }
+    }
+    details#publications {
+      h3 {
+        max-width: 100%;
+      }
+      h4 {
+        position: relative;
+        max-width: 100%;
+      }
+    }
+  </style>
+  <details id="education">
+    <summary>
+      <h2>Education</h2>
+    </summary>
+    <ul>
+      {
+        resume.education.map((w) => (
+          <li>
+            <h3>{w.institution}</h3>
+            <h4 class="degree">{w.studyType}</h4>
+            <div class="meta">
+              <span>{w.startDate}</span>—<span>{w.endDate}</span>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+  <details id="work">
+    <summary>
+      <h2>Work History</h2>
+    </summary>
+    <ul>
+      {
+        resume.work.map((w) => (
+          <li>
+            <h3>{w.position}</h3>
+            <h4 class="company">{w.name}</h4>
+            <div class="meta">
+              <span>{w.startDate}</span>—<span>{w.endDate}</span>
+            </div>
+            <ul class="desc">
+              {w.summary.map((s) => (
+                <li>{s}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+  <details id="publications">
+    <summary>
+      <h2>Publications</h2>
+    </summary>
+    <ul>
+      {
+        resume.publications.map((w) => (
+          <li>
+            <h3>{w.name}</h3>
+            <h4 class="institution">{w.publisher}</h4>
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+  <details id="awards">
+    <summary>
+      <h2>Honors & Awards</h2>
+    </summary>
+    <ul>
+      {
+        resume.awards.map((w) => (
+          <li>
+            <h3>{w.title}</h3>
+            <h4 class="company">{w.awarder}</h4>
+            <div class="meta">
+              <span>{w.date}</span>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+  <details id="languages">
+    <summary>
+      <h2>Languages</h2>
+    </summary>
+    <ul>
+      {
+        resume.languages.map((l) => (
+          <li>
+            <h3>{l.name}</h3>
+            <div>{l.fluency}</div>
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+  <details id="projects">
+    <summary>
+      <h2>
+        Projects
+      </h2>
+    </summary>
+    <div>
+      <Working client:load />
+    </div>
+  </details>
+</Container>
