@@ -1,8 +1,8 @@
 import fs from "fs";
 
-var args = process.argv.slice(2)
+var args = process.argv.slice(2);
 fs.writeFileSync(
-  "../env.json",
+  `${process.cwd()}/env.json"`,
   JSON.stringify({
     github: args[0]
   })
