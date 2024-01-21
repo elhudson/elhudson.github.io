@@ -1,7 +1,7 @@
 import fs from "fs";
 
 var args = process.argv.slice(2);
-console.log(__dirname)
+console.log(process.cwd())
 fs.writeFileSync(
   `../env.json"`,
   JSON.stringify({
