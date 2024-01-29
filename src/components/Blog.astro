@@ -2,9 +2,12 @@
 import { getCollection } from "astro:content";
 import FormattedDate from "./FormattedDate.astro";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => a.data.pub.valueOf() - b.data.pub.valueOf()
+const { count } = Astro.props;
+
+var posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pub.valueOf() - a.data.pub.valueOf()
 );
+count && (posts = posts.slice(0, count));
 ---
 
 <!doctype html>
@@ -38,7 +41,6 @@ const posts = (await getCollection("blog")).sort(
       }
       div.meta {
         text-align: right;
-
       }
     }
     ul li * {
@@ -70,19 +72,36 @@ const posts = (await getCollection("blog")).sort(
     ul a:hover img {
       box-shadow: var(--box-shadow);
     }
+    .tags {
+      white-space: nowrap;
+      overflow-x: scroll;
+      span {
+        &::before {
+          content: "# "
+        }
+        &:not(:last-child)::after {
+          content: ", ";
+        }
+      }
+    }
+    div.description {
+      min-height: 3ch;
+    }
+    li.post {
+      border-bottom: 1.5px solid var(--accent-dark);
+    }
   </style>
   <ul>
     {
       posts.map((post) => (
-        <li>
+        <li class="post">
           <a href={`/blog/${post.slug}/`}>
             <h4 class="title">{post.data.title}</h4>
           </a>
           <div class="meta">
             <FormattedDate date={post.data.pub} />
             {post.data.tags && (
-              <div>
-                <i>filed under: </i>
+              <div class="tags">
                 {post.data.tags.map((tag) => (
                   <span>{tag}</span>
                 ))}{" "}
@@ -94,5 +113,6 @@ const posts = (await getCollection("blog")).sort(
       ))
     }
   </ul>
+
 
 </html>

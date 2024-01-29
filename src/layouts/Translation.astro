@@ -1,0 +1,33 @@
+---
+const { text, translation } = Astro.props;
+---
+
+<section>
+  <div class="translation">
+    <pre
+      class="text">
+              <code>
+                  {text}
+              </code>
+    </pre>
+    <pre
+      class="translate">
+              <code>
+                  {translation}
+              </code>
+    </pre>
+  </div>
+</section>
+
+<style lang="scss">
+  .translation {
+    display: flex;
+    code {
+      display: block;
+      width: 100%;
+    }
+    pre.translate code {
+      text-align: right;
+    }
+  }
+</style>
