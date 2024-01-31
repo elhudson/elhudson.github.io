@@ -8,20 +8,27 @@ const { title, description } = Astro.props;
 
 <html lang="en">
   <style lang="scss">
+    @use "sass:color";
+    @import "../styles/vars.scss";
+
     article {
       display: flex;
+      margin-top: 10px;
       >div {
         padding: 10px;
-        padding-top: 0px;
       }
       .pfp {
+        margin-top: 15px;
         flex-shrink: 0;
+        background-color: transparentize($accent-dark, 0.85);
+
         img {
           height: 70vh;
           display: block;
-          border-radius: 12px;
-          box-shadow: var(--box-shadow);
+          border-radius: unset;
+          margin:0px;
         }
+        border: 1.5px dashed var(--accent);
       }
       .title {
         margin-bottom: 1em;

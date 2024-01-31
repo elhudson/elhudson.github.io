@@ -62,7 +62,7 @@
 </script>
 
 {#await resume then resume}
-  <ResumeSection title={"Skills"}>
+  <ResumeSection title={"Skills"} icon="streamline-emojis:woman-mechanic-2">
     <ul>
       {#each resume.skills as category}
         <li id={category.category.toLowerCase().replace(" ", "_")}>
@@ -76,7 +76,7 @@
       {/each}
     </ul>
   </ResumeSection>
-  <ResumeSection title={"Experience"}>
+  <ResumeSection title={"Experience"} icon="streamline-emojis:briefcase">
     <ul>
       {#each resume.work as w}
         <li>
@@ -97,7 +97,7 @@
       {/each}
     </ul>
   </ResumeSection>
-  <ResumeSection title={"Education"}>
+  <ResumeSection title={"Education"} icon="streamline-emojis:graduation-cap">
     <ul>
       {#each resume.education as w}
         <li>
@@ -112,7 +112,7 @@
     </ul>
   </ResumeSection>
 
-  <ResumeSection title={"Volunteering"}>
+  <ResumeSection title={"Volunteering"} icon="streamline-emojis:rainbow">
     <ul>
       {#each resume.volunteer as w}
         <li>
@@ -126,7 +126,7 @@
       {/each}
     </ul>
   </ResumeSection>
-  <ResumeSection title={"Awards"}>
+  <ResumeSection title={"Awards"} icon="openmoji:trophy">
     <ul>
       {#each resume.awards as w}
         <li>
@@ -139,7 +139,7 @@
       {/each}
     </ul>
   </ResumeSection>
-  <ResumeSection title={"Publications"}>
+  <ResumeSection title={"Publications"} icon="streamline-emojis:scroll">
     <ul>
       {#each resume.publications as w}
         <li>
@@ -152,7 +152,7 @@
       {/each}
     </ul>
   </ResumeSection>
-  <ResumeSection title={"Languages"}>
+  <ResumeSection title={"Languages"} icon="streamline-emojis:globe-showing-americas">
     <ul>
       {#each resume.languages as w}
         <li>

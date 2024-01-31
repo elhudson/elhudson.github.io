@@ -19,28 +19,16 @@ count && (posts = posts.slice(0, count));
     ul {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
+      gap: 1ch;
       list-style-type: none;
       margin: 0;
       padding: 0;
-    }
-    li {
-      position: relative;
-      div.meta {
-        position: absolute;
-        right: 0;
-        top: 0;
-        max-width: 200px;
-      }
     }
     ul li {
       width: 100%;
       a,
       div.meta {
         width: calc(100% - 200px);
-      }
-      div.meta {
-        text-align: right;
       }
     }
     ul li * {
@@ -69,26 +57,47 @@ count && (posts = posts.slice(0, count));
       text-decoration: underline;
       text-underline-offset: 2px;
     }
-    ul a:hover img {
-      box-shadow: var(--box-shadow);
-    }
     .tags {
-      white-space: nowrap;
-      overflow-x: scroll;
       span {
-        &::before {
-          content: "# "
-        }
         &:not(:last-child)::after {
           content: ", ";
         }
       }
     }
+    div.content {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      grid-column-gap: 10px;
+      
+    }
+    div.metadata,
     div.description {
-      min-height: 3ch;
+      label {
+        font-family: monospace;
+        font-weight: 700;
+        display: inline;
+      }
+      > div {
+        padding-bottom: 0px;
+        border-bottom: 1.5px dotted var(--accent);
+        width: inherit;
+      }
+      span,
+      p {
+        font-style: italic;
+      }
+    }
+    p {
+      text-decoration: underline dotted var(--accent) 1.5px !important;
+      text-underline-offset: 7px;
+      line-height: 1.7;
     }
     li.post {
-      border-bottom: 1.5px solid var(--accent-dark);
+      padding-bottom: 1ch;
+      border-bottom: 1px solid var(--accent-dark);
+      &:first-child {
+        margin-top: 2ch;
+      }
     }
   </style>
   <ul>
@@ -98,17 +107,30 @@ count && (posts = posts.slice(0, count));
           <a href={`/blog/${post.slug}/`}>
             <h4 class="title">{post.data.title}</h4>
           </a>
-          <div class="meta">
-            <FormattedDate date={post.data.pub} />
-            {post.data.tags && (
-              <div class="tags">
-                {post.data.tags.map((tag) => (
-                  <span>{tag}</span>
-                ))}{" "}
+          <div class="content">
+            <div class="metadata">
+              <div class="published">
+                <label>published: </label>
+                <FormattedDate date={post.data.pub} />
               </div>
-            )}
+              {post.data.tags && (
+                <div class="tags">
+                  <label>tags: </label>
+                  <span>
+                    {post.data.tags.map((tag) => (
+                      <span>{tag}</span>
+                    ))}
+                  </span>
+                </div>
+              )}
+            </div>
+            <div class="description">
+              <p>
+                <label>synopsis: </label>
+                {post.data.description}
+              </p>
+            </div>
           </div>
-          <div class="description">{post.data.description}</div>
         </li>
       ))
     }

@@ -1,0 +1,80 @@
+---
+import Container from "../components/Container.astro";
+
+const contact = [
+  {
+    name: "telephone",
+    link: "tel:7814589514",
+    value: "(781) 458.9514",
+    icon: "streamline-emojis:telephone"
+  },
+  {
+    name: "email",
+    link: "mailto:el.hudson@hotmail.com",
+    value: "el.hudson@hotmail.com",
+    icon: "streamline-emojis:e-mail-2"
+  }
+];
+
+const links = [
+  {
+    name: "github",
+    link: "github.com/elhudson",
+    value: "elhudson",
+    icon: "skill-icons:github-dark"
+  }
+];
+---
+
+<script>
+  import "iconify-icon";
+</script>
+
+<style>
+  li {
+    list-style: none;
+    font-size: 16px;
+    font-family: monospace;
+    label {
+        font-weight: bold;
+    }
+    a {
+        font-style: italic;
+    }
+  }
+  h2 {
+    width: 100%;
+    text-align: right;
+  }
+</style>
+
+<Container>
+  <section>
+    <h2>contact info</h2>
+    <ul>
+      {
+        contact.map((c) => (
+          <li>
+            <iconify-icon icon={c.icon} />
+            <label>{c.name}: </label>
+            <a href={c.link}>{c.value}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  <section>
+    <h2>elsewhere</h2>
+      <ul>
+        {
+          links.map((c) => (
+            <li>
+              <iconify-icon icon={c.icon} />
+              <label>{c.name}: </label>
+              <a href={c.link}>{c.value}</a>
+            </li>
+          ))
+        }
+      </ul>
+  </section>
+</Container>

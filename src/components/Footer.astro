@@ -3,28 +3,15 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Elizabeth Hudson. All rights reserved.
+  &copy; {today.getFullYear()} Elizabeth Hudson. All rights reserved.
 </footer>
 <style>
-	footer {
-		padding: 1em 1em 1em 1em;
-		background-color: var(--background);
-		text-align: center;
-		width: 100%;
-		position: fixed;
-		bottom: 0;
-	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
-	}
+  footer {
+    padding: 1em 1em 1em 1em;
+    background-color: var(--background);
+    text-align: center;
+    bottom: 0;
+    border-top: 1.5px solid var(--accent-dark);
+	width: 100%;
+  }
 </style>

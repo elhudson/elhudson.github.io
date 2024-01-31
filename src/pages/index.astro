@@ -1,7 +1,11 @@
 ---
 import Container from "../components/Container.astro";
-import Current from "../layouts/Current.astro";
 import Blog from "../components/Blog.astro";
+import Reads from "../components/Statuses/Reads.svelte";
+import Tunes from "../components/Statuses/Tunes.svelte";
+import Pods from "../components/Statuses/Pods.svelte";
+import Books from "../components/Statuses/Books.svelte";
+import Working from "../components/Statuses/Working.svelte"
 ---
 
 <html>
@@ -21,7 +25,13 @@ import Blog from "../components/Blog.astro";
     </section>
     <section>
       <h2>what I'm up to</h2>
-      <Current />
+      <div class="current">
+        <Reads client:load />
+        <Tunes client:load />
+        <Pods client:load />
+        <Books client:load />
+        <Working client:load />
+      </div>
     </section>
   </Container>
 </html>
