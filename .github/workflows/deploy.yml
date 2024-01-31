@@ -21,7 +21,7 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
       - name: Save sensitive data
-        run: node scripts/secrets.js ${{secrets.API_KEY}}
+        run: node scripts/secrets.js ${{secrets.API_KEY}} ${{secrets.SPOTIFY_KEYS}} ${{secrets.OMNIVORE_KEY}}
       - name: Install, build, and upload your site
         uses: withastro/action@v1
       
